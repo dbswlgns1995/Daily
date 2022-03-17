@@ -3,6 +3,7 @@ package com.jihoonyoon.daily
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -36,6 +37,10 @@ class MainActivity : AppCompatActivity() {
     // Add Button for showing bottomSheetView and adding daily plan
     private val addButton: FloatingActionButton by lazy {
         findViewById(R.id.add_floatingActionButton_main)
+    }
+
+    private val linearLayoutMain: LinearLayout by lazy {
+        findViewById(R.id.linearlayout_main)
     }
 
     // Room
@@ -85,7 +90,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun initRecyclerView(context: Context){
+    // 리사이클러뷰 초기화
+    public fun initRecyclerView(context: Context){
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -101,16 +107,16 @@ class MainActivity : AppCompatActivity() {
             }
 
             var listCount = when(mutableList.count()){
-                in 1..3 -> 1
-                in 4..8 -> 2
-                in 9..15 -> 3
+                in 1..2 -> 1
+                in 3..4 -> 2
+                in 5..9 -> 3
                 else -> 4
             }
 
             Log.d(TAG, listCount.toString())
 
             CoroutineScope(Dispatchers.Main).launch {
-                adapter = DailyRecyclerViewAdapter(context, mutableList)
+                adapter = DailyRecyclerViewAdapter(this@MainActivity, context, mutableList)
                 val gridLayoutManager = GridLayoutManager(context, listCount, GridLayoutManager.HORIZONTAL, false)
                 recyclerView.adapter = adapter
                 recyclerView.layoutManager = gridLayoutManager

@@ -36,6 +36,8 @@ class AddBottomSheetDialogFragment (val save: (Boolean) -> Unit): BottomSheetDia
     private lateinit var cancelButton: Button
     private lateinit var saveButton: Button
 
+    // db
+
     override fun onStart() {
         super.onStart()
 
@@ -96,8 +98,6 @@ class AddBottomSheetDialogFragment (val save: (Boolean) -> Unit): BottomSheetDia
                 dismiss()
                 save(true)
             }
-
-
         }
     }
 

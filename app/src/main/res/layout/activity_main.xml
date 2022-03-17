@@ -17,6 +17,12 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         />
 
+    <LinearLayout
+        android:id="@+id/linearlayout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"/>
+
     <TextView
         android:id="@+id/date_textView_main"
         android:layout_width="wrap_content"
